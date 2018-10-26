@@ -35,7 +35,7 @@ def get_parser():
 
     parser.add_argument("-o","--outputFile",
                         dest="outputFile",
-                        default='testRx.txt',
+                        default='/flash/testRx.txt',
                         type=str,
                         help="Output file name ")
 
