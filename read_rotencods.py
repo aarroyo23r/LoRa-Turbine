@@ -17,13 +17,12 @@ CLK2 = Pin('P21', mode=Pin.IN, pull=None, alt=-1) #Es el pin P21
 DT2 = Pin('P20', mode=Pin.IN, pull=None, alt=-1) #Es el pin P20
 
 #Esto debe ir en el MAIN
-
-def READ_ROTENCOD1(#CLK1, DT1#):
+def READ_ROTENCOD1(''' CLK1, DT1 '''):
     lastTime1 = time.time()
     poscount1 = 0
     CLKLast1 =  CLK1.value() #Leer ultimo valor de CLK1
 
-    while time.time()-lastTime1 <= 1.2:
+    while True:
         state1 = CLK1.value()
         if state1 != CLKlast1:
             if DT1.value() != state1:
@@ -41,12 +40,12 @@ def READ_ROTENCOD1(#CLK1, DT1#):
 
 
 
-def READ_ROTENCOD2(#CLK2, DT2):
+def READ_ROTENCOD2('''CLK2, DT2'''):
     lastTime2 = time.time()
     poscount2 = 0
     CLKLast2 =  CLK2.value() #Leer ultimo valor de CLK
 
-    while time.time()-lastTime2 <= 1.2:
+    while True:
         state2 = CLK2.value()
         if state2 != CLKlast2:
             if DT2.value() != state2:
