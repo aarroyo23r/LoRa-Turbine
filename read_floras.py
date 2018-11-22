@@ -14,19 +14,24 @@ lsm303_2 = LSM303D(i2c2)
 #Esto debe ir en el MAIN
 
 
-def READ_FLORAS('''lsm303_1, lsm303_2'''):
+def READ_FLORA1(lsm303_1):
     accel1, mag1 = lsm303_1.read()
     x1, y1, z1 = accel1
     roll1 = atan2(y1,z1)*180/pi
     pitch1 = atan2(-x1, sqrt(y1*y1 + z1*z1))*180/pi
     roll_str1 = str(roll1)
     pitch_str1 = str(pitch1)
+    accel1_str1 = str(accel1)
 
+    return (x1 ,y1)
+
+def READ_FLORA2(lsm303_2):
     accel2, mag2 = lsm303_2.read()
     x2, y2, z2 = accel2
     roll2 = atan2(y2,z2)*180/pi
     pitch2 = atan2(-x2, sqrt(y2*y2 + z2*z2))*180/pi
     roll_str2 = str(roll2)
     pitch_str2 = str(pitch2)
+    accel1_str2 = str(accel2)
 
-    return (roll_str1, pitch_str1, roll_str2, pitch_str2)
+    return (x2 ,y2)

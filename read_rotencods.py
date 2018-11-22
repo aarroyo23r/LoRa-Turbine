@@ -17,14 +17,16 @@ CLK2 = Pin('P21', mode=Pin.IN, pull=None, alt=-1) #Es el pin P21
 DT2 = Pin('P20', mode=Pin.IN, pull=None, alt=-1) #Es el pin P20
 
 #Esto debe ir en el MAIN
-def READ_ROTENCOD1(''' CLK1, DT1 '''):
+def READ_ROTENCOD1(CLK1, DT1):
     lastTime1 = time.time()
     poscount1 = 0
     CLKLast1 =  CLK1.value() #Leer ultimo valor de CLK1
+    SAMPLE_DELAY = 1
+    PULSES_PER_TURN = 40
 
     while True:
         state1 = CLK1.value()
-        if state1 != CLKlast1:
+        if state1 != CLKLast1:
             if DT1.value() != state1:
                 poscount1 = poscount1 + 1
             else:
@@ -36,18 +38,21 @@ def READ_ROTENCOD1(''' CLK1, DT1 '''):
             rpm1 = (poscount1*(60 / (time.time() - lastTime1))) / PULSES_PER_TURN
             poscount1 = 0
             lastTime1 = time.time()
+            #print(rpm1)
             return (rpm1)
 
 
 
-def READ_ROTENCOD2('''CLK2, DT2'''):
+def READ_ROTENCOD2(CLK2, DT2):
     lastTime2 = time.time()
     poscount2 = 0
     CLKLast2 =  CLK2.value() #Leer ultimo valor de CLK
+    SAMPLE_DELAY = 1
+    PULSES_PER_TURN = 40
 
     while True:
         state2 = CLK2.value()
-        if state2 != CLKlast2:
+        if state2 != CLKLast2:
             if DT2.value() != state2:
                 poscount2 = poscount2 + 1
             else:
@@ -60,4 +65,5 @@ def READ_ROTENCOD2('''CLK2, DT2'''):
             rpm2 = (poscount2*(60 / (time.time() - lastTime2))) / PULSES_PER_TURN
             poscount2 = 0
             lastTime2 = time.time()
+            #print(rpm2)
             return (rpm2)
